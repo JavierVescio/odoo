@@ -26,7 +26,8 @@ class CashBox(models.TransientModel):
                 if not record.journal_id:
                     raise UserError(_("Please check that the field 'Journal' is set on the Bank Statement"))
                 if not record.journal_id.company_id.transfer_account_id:
-                    raise UserError(_("Please check that the field 'Transfer Account' is set on the company."))
+                    pass
+                    # raise UserError(_("Please check that the field 'Transfer Account' is set on the company."))
                 box._create_bank_statement_line(record)
         return {}
 
@@ -64,7 +65,8 @@ class CashBoxOut(CashBox):
     @api.multi
     def _calculate_values_for_statement_line(self, record):
         if not record.journal_id.company_id.transfer_account_id:
-            raise UserError(_("You should have defined an 'Internal Transfer Account' in your cash register's journal!"))
+            pass
+            # raise UserError(_("You should have defined an 'Internal Transfer Account' in your cash register's journal!"))
         amount = self.amount or 0.0
         return {
             'date': record.date,

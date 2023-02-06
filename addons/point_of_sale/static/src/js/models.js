@@ -784,7 +784,8 @@ exports.PosModel = Backbone.Model.extend({
         if (order) {
             order.get_orderlines().forEach(function (orderline) {
                 var product = orderline.product;
-                var image_url = window.location.origin + '/web/image?model=product.product&field=image_medium&id=' + product.id;
+                //var image_url = window.location.origin + '/web/image?model=product.product&field=image_medium&id=' + product.id;
+                var image_url = window.location.origin + '/web/static/src/img/placeholder.png';
 
                 // only download and convert image if we haven't done it before
                 if (! product.image_base64) {

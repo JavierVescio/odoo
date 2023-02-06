@@ -446,7 +446,7 @@ class ProductProduct(models.Model):
             if operator in positive_operators:
                 products = self.search([('default_code', '=', name)] + args, limit=limit)
                 if not products:
-                    products = self.search([('barcode', '=', name)] + args, limit=limit)
+                    products = self.search([('barcode', 'ilike', name)] + args, limit=limit)
             if not products and operator not in expression.NEGATIVE_TERM_OPERATORS:
                 # Do not merge the 2 next lines into one single search, SQL search performance would be abysmal
                 # on a database with thousands of matching products, due to the huge merge+unique needed for the

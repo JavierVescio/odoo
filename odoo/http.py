@@ -650,9 +650,9 @@ class JsonRequest(WebRequest):
         try:
             return super(JsonRequest, self)._handle_exception(exception)
         except Exception:
-            if not isinstance(exception, (odoo.exceptions.Warning, SessionExpiredException,
-                                          odoo.exceptions.except_orm, werkzeug.exceptions.NotFound)):
-                _logger.exception("Exception during JSON request handling.")
+            # if not isinstance(exception, (odoo.exceptions.Warning, SessionExpiredException,
+            #                               odoo.exceptions.except_orm, werkzeug.exceptions.NotFound)):
+            _logger.exception("Exception during JSON request handling.")
             error = {
                     'code': 200,
                     'message': "Odoo Server Error",

@@ -157,7 +157,7 @@ class Partner(models.Model):
                                "You should use the same timezone that is otherwise used to pick and "
                                "render date and time values: your computer's timezone.")
     tz_offset = fields.Char(compute='_compute_tz_offset', string='Timezone offset', invisible=True)
-    user_id = fields.Many2one('res.users', string='Salesperson',
+    user_id = fields.Many2one('res.users', string='Salesperson', required=True,
       help='The internal user that is in charge of communicating with this contact if any.')
     vat = fields.Char(string='TIN', help="Tax Identification Number. "
                                          "Fill it if the company is subjected to taxes. "

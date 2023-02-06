@@ -13,6 +13,8 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.tools.float_utils import float_compare, float_round, float_is_zero
 
 PROCUREMENT_PRIORITIES = [('0', 'Not urgent'), ('1', 'Normal'), ('2', 'Urgent'), ('3', 'Very Urgent')]
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class StockMove(models.Model):
@@ -496,6 +498,7 @@ class StockMove(models.Model):
                     # We may have done move in an open picking in a scrap scenario.
                     continue
                 else:
+                    _logger.info(move.product_id)
                     raise UserError(_('Cannot unreserve a done move'))
             moves_to_unreserve |= move
         moves_to_unreserve.mapped('move_line_ids').unlink()

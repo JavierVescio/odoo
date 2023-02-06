@@ -166,7 +166,7 @@ class Inventory(models.Model):
             raise UserError(_('You cannot set a negative product quantity in an inventory line:\n\t%s - qty: %s') % (negative.product_id.name, negative.product_qty))
         self.action_check()
         self.write({'state': 'done'})
-        self.post_inventory()
+        self.sudo().post_inventory()
         return True
 
     def post_inventory(self):

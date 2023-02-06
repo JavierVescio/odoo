@@ -756,6 +756,7 @@ var ProductCategoriesWidget = PosBaseWidget.extend({
 
     get_image_url: function(category){
         return window.location.origin + '/web/image?model=pos.category&field=image_medium&id='+category.id;
+        //return window.location.origin + '/web/static/src/img/placeholder.png';
     },
 
     render_category: function( category, with_image ){
@@ -913,6 +914,7 @@ var ProductListWidget = PosBaseWidget.extend({
     },
     get_product_image_url: function(product){
         return window.location.origin + '/web/image?model=product.product&field=image_medium&id='+product.id;
+        //return window.location.origin + '/web/static/src/img/placeholder.png';
     },
     replace: function($target){
         this.renderElement();

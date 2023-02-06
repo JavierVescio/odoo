@@ -309,6 +309,8 @@ class MailMail(models.Model):
                         headers.update(safe_eval(mail.headers))
                     except Exception:
                         pass
+                headers['Return-Path'] = 'facturaselectronicas@macroargentina.com.ar'
+                _logger.info(headers)
 
                 # Writing on the mail object may fail (e.g. lock on user) which
                 # would trigger a rollback *after* actually sending the email.
@@ -322,6 +324,7 @@ class MailMail(models.Model):
                 # build an RFC2822 email.message.Message object and send it without queuing
                 res = None
                 for email in email_list:
+                    _logger.info(email.get('email_to'))
                     msg = IrMailServer.build_email(
                         email_from=mail.email_from,
                         email_to=email.get('email_to'),
@@ -337,6 +340,7 @@ class MailMail(models.Model):
                         subtype='html',
                         subtype_alternative='plain',
                         headers=headers)
+                    _logger.info(msg)
                     try:
                         res = IrMailServer.send_email(
                             msg, mail_server_id=mail.mail_server_id.id, smtp_session=smtp_session)

@@ -10,6 +10,9 @@ from odoo.tools import float_is_zero, float_compare
 from odoo.tools.safe_eval import safe_eval
 from odoo.addons import decimal_precision as dp
 from lxml import etree
+import logging
+
+logger = logging.getLogger(__name__)
 
 #----------------------------------------------------------
 # Entries
@@ -64,7 +67,7 @@ class AccountMove(models.Model):
     @api.one
     @api.depends('company_id')
     def _compute_currency(self):
-        self.currency_id = self.company_id.currency_id or self.env.user.company_id.currency_id
+        self.currency_id = self.sudo().company_id.currency_id or self.env.user.company_id.currency_id
 
     @api.multi
     def _get_default_journal(self):
