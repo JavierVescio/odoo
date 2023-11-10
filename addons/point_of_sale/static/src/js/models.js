@@ -619,7 +619,7 @@ exports.PosModel = Backbone.Model.extend({
                 method: 'search_read',
                 args: [domain, fields],
             }, {
-                timeout: 3000,
+                timeout: 10000,
                 shadow: true,
             })
             .then(function(partners){
